@@ -10,9 +10,21 @@
     <nav>
         <a href="./index.html">Return Home</a>
     </nav>
+    <form onsubmit="handleSubmit(event)">
+        <label for="string">What is the input string?</label>
+        <input id="string" type="text" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
 
+        </div>  
     <script>
-        
+        function handleSubmit(event){
+            event.preventDefault();
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = ` <p>${document.getElementById('string').value} has ${document.getElementById('string').value.length} characters.</p>`
+        }
+
     </script>
 </body>
 </html>
