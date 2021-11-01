@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <a href="./index.html">Return Home</a>
+    <form onsubmit="handleSubmit(event)">
+        <label for="quote">What is the quote?</label>
+        <input id="quote" type="text" required>
+        <label for="writer">Who said it?</label>
+        <input id="writer" type="text" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
+
+    </div>
 
 
-    <script></script>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML =
+                ` <p>${document.getElementById('writer').value} says <q>${document.getElementById('quote').value}</q></p>`
+        }
+    </script>
 </body>
+
 </html>
