@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <a href="./index.html">Return Home</a>
 
@@ -16,16 +18,22 @@
         <input id="verb" type="text" required>
         <label for="adverb">Enter an adverb:</label>
         <input id="adverb" type="text" required>
+        <label for="adjective">Enter an adjective:</label>
+        <input id="adjective" type="text" required>
         <input type="submit" value="Submit">
-
-        <div class="output">
-
-        </div>
     </form>
+    <div class="output">
+
+    </div>
 
     <script>
-
-
+        function handleSubmit(event) {
+            event.preventDefault();
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML =
+                ` <p>Do you ${document.getElementById('verb').value} your ${document.getElementById('adjective').value} ${document.getElementById('noun').value} ${document.getElementById('adverb').value}? That's hilarious </p>`
+        }
     </script>
 </body>
+
 </html>
