@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="./index.html">Return Home</a>
+    <form onsubmit="handleSubmit(event)">
+        <label for="num-one">What is the first number?</label>
+        <input type="number" id="num-one" required>
+        <label for="num-two">What is the second number?</label>
+        <input type="number" id="num-two" required>
+        <input type="submit" value="Submit">
+    </form>
+    
+    <div class="output">
+
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let output = document.getElementsByClassName('output')
+            let numOne = parseInt(document.getElementById("num-one").value);
+            let numTwo = parseInt(document.getElementById("num-two").value);
+            output[0].innerHTML = `<p>${numOne} + ${numTwo} = ${numOne + numTwo}</p>
+           <p> ${numOne} - ${numTwo} = ${numOne - numTwo} </p>
+           <p> ${numOne} x ${numTwo} = ${numOne * numTwo} </p>
+           <p>${numOne} / ${numTwo} = ${numOne / numTwo}</p>`
+        }
+    </script>
+</body>
+
+</html>
