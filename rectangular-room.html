@@ -12,12 +12,24 @@
     <a href="./index.html">Return Home</a>
 
     <form onsubmit="handleSubmit(event)">
-
-        <label for="length">What is the length of the room in feet?</label>
-        <input id="length" type="number" required>
-        <label for="width">What is the width of the room in feet?</label>
-        <input id="width" type="number" required>
-        <input type="submit" value="Submit">
+        <div>
+            <label>Unit of input;</label>
+            <label for="feet">Feet</label>
+            <input type="radio" id="feet" name="inputType" value="feet" checked>
+            <label for="meter">Meters</label>
+            <input type="radio" id="meter" name="inputType" value="meter" onchange="changeHtml(this)">
+        </div>
+        <div>
+            <label for="length">What is the length of the room in feet?</label>
+            <input id="length" type="number" required>
+        </div>
+        <div>
+            <label for="width">What is the width of the room in feet?</label>
+            <input id="width" type="number" required>
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
     </form>
     <div class="output">
 
@@ -25,23 +37,96 @@
     </div>
 
     <script>
+        let unit = "feet";
+
         function handleSubmit(event) {
             event.preventDefault()
             let width = parseInt(document.getElementById('width').value);
             let length = parseInt(document.getElementById('length').value);
             let output = document.getElementsByClassName("output");
-            output[0].innerHTML = `   <p>The area is;</p>
-        <p>${roomAreaFeet(width, length)} square feet</p>
-        <p>${roomAreaMeter(width, length)} square meters</p>`
+            if (unit === "feet") {
+                output[0].innerHTML = `   <p>The area is;</p>
+            <p>${roomAreaFeet(width, length)} square feet</p>
+            <p>${roomAreaMeter(width, length)} square meters</p>`
+            } else {
+                output[0].innerHTML = `   <p>The area is;</p>
+                <p>${roomAreaMeter(width, length)} square meters</p>
+                <p>${roomAreaFeet(width, length)} square feet</p>`
+
+            }
+
         }
 
         function roomAreaFeet(num1, num2) {
-            let squareFeet = num1 * num2;
-            return squareFeet;
+            if (unit === "feet"){
+                let squareFeet = num1 * num2;
+                return squareFeet;
+            }else{
+                let squareFeet = (num1 * num2)*3.28;
+                return squareFeet;
+            }
         }
-        function roomAreaMeter(num1, num2) {;
-            let squareMeter = (num1 * num2) * 0.09290304;
-            return squareMeter;
+
+        function roomAreaMeter(num1, num2) {
+            if (unit === "feet"){
+                let squareMeter = (num1 * num2) * 0.09290304;
+                return squareMeter;
+            }else {
+                let squareMeter = num1 * num2;
+                return squareMeter;
+            }
+        }
+
+        function changeHtml(radio) {
+            unit = "meters"
+            let change = document.getElementsByTagName('form')
+            change[0].innerHTML = `
+            <div>
+            <label>Unit of input;</label>
+            <label for="feet">Feet</label>
+            <input type="radio" id="feet" name="inputType" value="feet" onchange="changeHtmlBack(this)">
+            <label for="meter">Meters</label>
+            <input type="radio" id="meter" name="inputType" value="meter" onchange="changeHtml(this)" checked>
+        </div>
+        <div>
+            <label for="length">What is the length of the room in meters?</label>
+            <input id="length" type="number" required>
+        </div>
+        <div>
+            <label for="width">What is the width of the room in meters?</label>
+            <input id="width" type="number" required>
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+            `
+            console.log(unit);
+        }
+
+        function changeHtmlBack(radio) {
+            unit = "feet"
+            let change = document.getElementsByTagName('form')
+            change[0].innerHTML = `
+            <div>
+            <label>Unit of input;</label>
+            <label for="feet">Feet</label>
+            <input type="radio" id="feet" name="inputType" value="feet" checked>
+            <label for="meter">Meters</label>
+            <input type="radio" id="meter" name="inputType" value="meter" onchange="changeHtml(this)">
+        </div>
+        <div>
+            <label for="length">What is the length of the room in feet?</label>
+            <input id="length" type="number" required>
+        </div>
+        <div>
+            <label for="width">What is the width of the room in feet?</label>
+            <input id="width" type="number" required>
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+            `
+            console.log(unit);
         }
     </script>
 </body>
