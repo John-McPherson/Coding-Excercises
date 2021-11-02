@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <a href="./index.html">Return Home</a>
 
-    <script>
+    <form onsubmit="handleSubmit(event)">
 
+        <label for="length">What is the length of the room in feet?</label>
+        <input id="length" type="number" required>
+        <label for="width">What is the width of the room in feet?</label>
+        <input id="width" type="number" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
+
+
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault()
+            let width = parseInt(document.getElementById('width').value);
+            let length = parseInt(document.getElementById('length').value);
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `   <p>The area is;</p>
+        <p>${roomAreaFeet(width, length)} square feet</p>
+        <p>${roomAreaMeter(width, length)} square meters</p>`
+        }
+
+        function roomAreaFeet(num1, num2) {
+            let squareFeet = num1 * num2;
+            return squareFeet;
+        }
+        function roomAreaMeter(num1, num2) {;
+            let squareMeter = (num1 * num2) * 0.09290304;
+            return squareMeter;
+        }
     </script>
 </body>
+
 </html>
