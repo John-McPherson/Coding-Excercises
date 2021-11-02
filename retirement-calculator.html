@@ -19,11 +19,29 @@
     </form>
     <div class="output">
 
-        
-    </div>
-        <script>
 
-        </script>
+    </div>
+    <script>
+        var today = new Date();
+        console.log(today);
+
+        function handleSubmit(event) {
+            event.preventDefault() 
+            let yearsLeft = parseInt(document.getElementById('retire-age').value); - parseInt(document.getElementById('age').value);
+            let output = document.getElementsByClassName("output");
+            let retireYear = parseInt(today.getFullYear()+yearsLeft);
+            console.log(retireYear);
+         
+            if (retireYear <= parseInt(today.getFullYear()+parseInt(document.getElementById('age').value))){
+                output[0].innerHTML = `<p>You can retire.</p>`
+            }
+            else{ 
+            output[0].innerHTML = `<p>You have ${yearsLeft} years left until you can retire.</p>
+                <p>It is, ${today.getFullYear()} so you can retire in ${parseInt(today.getFullYear()+yearsLeft)}.</p>
+            `
+            }
+        }
+    </script>
 </body>
 
 </html>
