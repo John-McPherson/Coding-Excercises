@@ -8,8 +8,32 @@
 </head>
 <body>
     <a href="./index.html">Return Home</a>
+    <form onsubmit="paintReq(event)">
+        <h2>How much paint do I need to paint my ceiling?</h2>
+        <label for="width">What is the width in feet?</label>
+        <input type="number" id="width" required>
+        <label for="length">What is the length in feet?</label>
+        <input type="number" id="length" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
+        <p>The ceiling is ${squareFoot} square feet.</p>
+        <p>You will need to purchase ${paintReq} gallons of paint.</p>
+
+
+
+    </div>
 
     <script>
+        function paintReq(event){
+            event.preventDefault();
+            const convt = 350;
+            let squareFoot = parseInt(document.getElementById('width').value)*parseInt(document.getElementById('length').value);
+            let paintReq = Math.ceil(squareFoot/convt);
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `<p>The ceiling is ${squareFoot} square feet.</p>
+        <p>You will need to purchase ${paintReq} gallons of paint.</p>`
+        }
 
     </script>
 </body>
