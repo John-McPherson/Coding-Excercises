@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <a href="./index.html">Return Home</a>
 
@@ -16,13 +18,31 @@
         <input type="number" id="pizzas" required>
         <input type="submit" value="Submit">
     </form>
-    
+
     <div class="output">
+     
+
 
     </div>
 
     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let output = document.getElementsByClassName("output");
+            let people = parseInt(document.getElementById('people').value);
+            let pizza = parseInt(document.getElementById('pizzas').value);
+            let slices = pizza * 8;
+            let slicePer = Math.floor(slices / people);
+            let sliceLeft = Math.floor(slices % people);
 
+            output[0].innerHTML = `
+            <p>${people} people with ${pizza} pizzas</p>
+        <p>Each person gets ${slicePer} pieces of pizza.</p>
+        <p>There are ${sliceLeft} leftover peices.</p>
+            `
+
+        }
     </script>
 </body>
+
 </html>
