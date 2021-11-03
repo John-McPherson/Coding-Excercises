@@ -10,8 +10,9 @@
 
 <body>
     <a href="./index.html">Return Home</a>
-
-    <form onsubmit="handleSubmit(event)">
+    <h1>Pizza Party</h1>
+    <form onsubmit="howManySlices(event)">
+        <h2>How many slices does everyone get?</h2>
         <label for="people">How many people?</label>
         <input type="number" id="people" required>
         <label for="pizzas">How many pizzas do you have?</label>
@@ -20,10 +21,19 @@
     </form>
 
     <div class="output">
-     
+
 
 
     </div>
+    <form onsubmit="howManyPizzas(event)">
+        <h2>How many Pizzas should I buy?</h2>
+        <label for="people-buy">How many people?</label>
+        <input type="number" id="people-buy" required>
+        <label for="slices">How many slices do they want?</label>
+        <input type="number" id="slices" required>
+        <input type="submit" value="Submit">
+    </form>
+
     <div class="output">
      
 
@@ -31,13 +41,13 @@
     </div>
 
     <script>
-        function handleSubmit(event) {
+        function howManySlices(event) {
             event.preventDefault();
             let output = document.getElementsByClassName("output");
             let people = parseInt(document.getElementById('people').value);
             let pizza = parseInt(document.getElementById('pizzas').value);
-            let slicePer = Math.floor((pizza*8)/ people);
-            let sliceLeft = Math.floor((pizza*8) % people);
+            let slicePer = Math.floor((pizza * 8) / people);
+            let sliceLeft = Math.floor((pizza * 8) % people);
 
             output[0].innerHTML = `
             <p>${people} people with ${pizza} pizza${checkPlural(pizza)}.</p>
@@ -46,8 +56,26 @@
             `
 
         }
-        function checkPlural(x){
-            if (x===1){
+        function howManyPizzas(event) {
+            event.preventDefault();
+            let output = document.getElementsByClassName("output");
+            let people = parseInt(document.getElementById('people-buy').value);
+            let slices = parseInt(document.getElementById('slices').value)
+            let slicesNeeded = slices*people;
+            let pizza = Math.ceil(slicesNeeded/8);
+            let leftovers = (pizza*8)-slicesNeeded;
+
+            output[1].innerHTML = `<p>${people} people that want ${slices} slice${checkPlural(slices)} of pizza.</p>
+        <p>You will need to buy ${pizza} pizza${checkPlural(pizza)} .</p>
+        <p>There will be ${leftovers} slice${checkPlural(leftovers)}  left over.</p>
+
+
+            `
+
+        }
+
+        function checkPlural(x) {
+            if (x === 1) {
                 return ""
             } else {
                 return "s";;
