@@ -24,6 +24,11 @@
 
 
     </div>
+    <div class="output">
+     
+
+
+    </div>
 
     <script>
         function handleSubmit(event) {
@@ -31,16 +36,22 @@
             let output = document.getElementsByClassName("output");
             let people = parseInt(document.getElementById('people').value);
             let pizza = parseInt(document.getElementById('pizzas').value);
-            let slices = pizza * 8;
-            let slicePer = Math.floor(slices / people);
-            let sliceLeft = Math.floor(slices % people);
+            let slicePer = Math.floor((pizza*8)/ people);
+            let sliceLeft = Math.floor((pizza*8) % people);
 
             output[0].innerHTML = `
-            <p>${people} people with ${pizza} pizzas</p>
-        <p>Each person gets ${slicePer} pieces of pizza.</p>
+            <p>${people} people with ${pizza} pizza${checkPlural(pizza)}.</p>
+        <p>Each person gets ${slicePer} piece${checkPlural(slicePer)} of pizza.</p>
         <p>There are ${sliceLeft} leftover peices.</p>
             `
 
+        }
+        function checkPlural(x){
+            if (x===1){
+                return ""
+            } else {
+                return "s";;
+            }
         }
     </script>
 </body>
