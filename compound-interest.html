@@ -19,9 +19,9 @@
         <label for="rate">Enter the rate of interest: </label>
         <input type="number" step=".01" min="0" max="100" id="rate" value="4.3" required>
         <label for="years">Enter the number of years: </label>
-        <input type="number" id="years" required value="4">
-        <label for="compound">Enter the number of years: </label>
-        <input type="number" id="compound" required value="6">
+        <input type="number" id="years" required value="6">
+        <label for="compound">Enter the number times the interest is compounded per year: </label>
+        <input type="number" id="compound" required value="4">
         <input type="submit" value="Submit">
     </form>
     <div class="output">
@@ -34,6 +34,20 @@
 
 
     <script>
+        function handleSubmit(event) {        
+            event.preventDefault();
+            let principal = parseInt(document.getElementById("principal").value);
+            let rate = parseFloat(document.getElementById("rate").value);
+            let compound = parseInt(document.getElementById("compound").value);
+            let years = parseInt(document.getElementById("years").value);
+            let interest = principal*(1+((rate/100))/compound)**(compound*years);
+            interest = parseFloat(interest.toFixed(2));
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `  
+            <p>$${principal} invested at  ${document.getElementById("rate").value}% for ${years} years compounded ${compound} times a year is $${interest}</p>
+
+            `
+        }
 
     </script>
 </body>
