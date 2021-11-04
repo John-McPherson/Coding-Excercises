@@ -18,13 +18,29 @@
         <label for="euros">How many euros are you exchanging?</label>
         <input type="number" step=".01" id="euros" required>
         <label for="ex-rate">What is the exchange rate?</label>
-        <input type="number" step=".01" id="ex-rate" required>
+        <input type="number" step=".01" id="ex-rate" value = "137.51" required>
         <input type="submit" value="Submit">
     </form>
     <div class="output">
-
+   
 
     </div>
+    <script>
+        function handleSubmit(event){
+            event.preventDefault()
+            let euros = parseFloat(document.getElementById('euros').value);
+            let exRate = parseFloat(document.getElementById('ex-rate').value);
+            let dollars = euros*(exRate/100);
+            dollars = parseFloat(dollars.toFixed(2));
+               let output = document.getElementsByClassName("output");
+               output[0].innerHTML =`     <p>How many euros are you exchanging? ${euros}</p>
+        <p>What is the exchange rate? ${exRate}</p>
+        <p>${euros} euros at an exchange rate of ${exRate} is ${dollars} U.S. dollars.</p>
+               `
+        }
+
+
+    </script>
     
 </body>
 </html>
