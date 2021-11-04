@@ -7,14 +7,51 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Self-Checkout</h1>
+    <nav>
+        <a href="./index.html">Return Home</a>
+    </nav>
+    <header>
+        <h1>Self-Checkout</h1>
+    </header>
     <form onsubmit="handleSubmit(event)">
-        <label for="name">What is your name?</label>
-        <input id="name" type="text" required>
+        <div>
+            <label for="price-one" >What is the price of item one?</label>
+            <input id="price-one" class="price" type="number" required>
+            <label for="quanity-one">What is the quanity of item one?</label>
+            <input id="quanity-one" class="quanity" type="number" required>
+        </div>
+        <div>
+            <label for="price-two" >What is the price of item two?</label>
+            <input id="price-two" class="price" type="number" required>
+            <label for="quanity-two">What is the quanity of item two?</label>
+            <input id="quanity-two" class="quanity" type="number" required>
+        </div>
+      
         <input type="submit" value="Submit">
     </form>
     <div class="output">
      
     </div>
+    <script>
+        function handleSubmit(event){
+            event.preventDefault()
+            let price = document.getElementsByClassName('price');
+            let quanity = document.getElementsByClassName('quanity');
+            let subTotal = 0
+            let output = document.getElementsByClassName("output");
+            for (let x in price){
+                if (isNaN(x)===false){
+                    subTotal += (parseInt(price[x].value) * parseInt(quanity[x].value));
+                }
+            }
+            let tax = subTotal * .055
+            let total = tax +subTotal;
+            console.log(tax);
+            output[0].innerHTML = `<p>Subtotal: $${subTotal}</p>
+     <p>Tax: $${tax}</p>
+     <p>Total: $${total}</p>`
+        }
+    </script>
+
 </body>
 </html>
