@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <nav>
         <a href="./index.html">Return Home</a>
@@ -14,10 +16,39 @@
         <h1>Computing Simple Interest</h1>
     </header>
 
+    <form onsubmit="handleSubmit(event)">
+        <label for="principal">Enter the principal: </label>
+        <input type="number" id="principal" required value="1500">
+        <label for="rate">Enter the rate of interest: </label>
+        <input type="number" step=".01" min="0" max="100" id="rate" value="4.3" required>
+        <label for="years">Enter the number of years: </label>
+        <input type="number" id="years" required value="4">
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
+        
+        
 
+    </div>
 
     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let principal = parseInt(document.getElementById("principal").value);
+            let rate = parseFloat(document.getElementById("rate").value);
 
+            let years = parseInt(document.getElementById("years").value);
+        
+            let interest = (principal * (rate/100))*4;
+
+
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `<p>After ${years} years at ${document.getElementById("rate").value}%, the investment will be worth $${principal+interest}</p>
+
+            `
+
+        }
     </script>
 </body>
+
 </html>
