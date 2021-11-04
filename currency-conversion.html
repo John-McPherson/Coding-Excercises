@@ -13,6 +13,18 @@
     <header>
         <h1>Currency Conversion</h1>
     </header>
+
+    <form onsubmit="handleSubmit(event)">
+        <label for="euros">How many euros are you exchanging?</label>
+        <input type="number" step=".01" id="euros" required>
+        <label for="ex-rate">What is the exchange rate?</label>
+        <input type="number" step=".01" id="ex-rate" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
+
+
+    </div>
     
 </body>
 </html>
