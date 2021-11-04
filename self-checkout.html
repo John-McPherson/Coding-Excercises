@@ -17,13 +17,13 @@
     </header>
     <form  onsubmit="handleSubmit(event)">
         <div id="shoping">
-        <div>
+        <div id="line1">
             <label for="price-one">What is the price of item 1?</label>
             <input id="price-1" class="price" type="number" required>
             <label for="quanity-1">What is the quanity of item 1?</label>
             <input id="quanity-1" class="quanity" type="number" required>
         </div>
-        <div>
+        <div id="line2">
             <label for="price-2">What is the price of item 2?</label>
             <input id="price-2" class="price" type="number" required>
             <label for="quanity-2">What is the quanity of item 2?</label>
@@ -31,7 +31,7 @@
         </div>
         </div>
         <button onclick="addLine(event)">Add line</button>
-
+        <button onclick="removeLine(event)">Remove line</button>
         <input type="submit" value="Submit">
     </form>
     <div class="output">
@@ -56,20 +56,23 @@
      <p>Tax: $${tax}</p>
      <p>Total: $${total}</p>`
         }
-
         let num = 3;
         function addLine(event) {
             event.preventDefault();
             let container = document.getElementById('shoping');
-            container.innerHTML += `<div> 
+            container.innerHTML += `<div id="line${num}"> 
             <label for="price-${num}" >What is the price of item ${num}?</label>
             <input id="price-${num}" class="price" type="number" required>
             <label for="quanity-${num}">What is the quanity of item ${num}?</label>
             <input id="quanity-${num}" class="quanity" type="number" required>
             </div>`
             num ++;
-           
-
+        }
+        function removeLine(event){
+            num --;
+            event.preventDefault();
+            let myobj = document.getElementById(`line${num}`);
+            myobj.remove();
         }
     </script>
 
