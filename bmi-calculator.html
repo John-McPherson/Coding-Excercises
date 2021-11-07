@@ -17,17 +17,36 @@
     <form onsubmit="handleSubmit(event)">
         <label for="weight">What is your weight in pounds?</label>
         <input type="number" id="weight" required value="187">
-        <label for="inches">What is your height in inches?</label>
-        <input type="number" id="inches" value = "75" required>
+        <label for="height">What is your height in inches?</label>
+        <input type="number" id="height" value = "75" required>
         <input type="submit" value="Submit">
     </form>
     <div class="output">
-
-   
-
     </div>
 
     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let html ="";
+            let output = document.getElementsByClassName('output');
+            let height = parseInt(document.getElementById('height').value);
+            let weight = parseInt(document.getElementById('weight').value);
+            let bmi = (weight/(height*height)*703);
+            bmi = parseFloat(bmi.toFixed(1));
+            if (bmi >25){
+                html = `<p>Your bmi is ${bmi}</p>
+<p>You are overweight. You should see a doctor.</p>`
+            }else if (bmi <18.5){
+                html = `<p>Your bmi is ${bmi}</p>
+<p>You are underweight. You should see a doctor.</p>`
+            }else {   html = `<p>Your bmi is ${bmi}</p>
+<p>You are within the ideal weight range.</p>`
+
+            }
+            output[0].innerHTML = html;
+            
+
+        }
 
     </script>
 </body>
