@@ -12,6 +12,17 @@
     </nav>
     <header>
         <h1>Tax Calculator</h1>
+        <form onsubmit="handleSubmit(event)">
+            <label for="ammount">What is the order ammount?</label>
+            <input type="number" id="ammount" required value="10">
+            <label for="state">What is the state?</label>
+            <input type="text" id="state" value = "WI" required>
+            <input type="submit" value="Submit">
+        </form>
+        <div class="output">
+       
+    
+        </div>
     </header>
     
     <script>
