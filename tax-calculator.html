@@ -20,8 +20,7 @@
             <input type="submit" value="Submit">
         </form>
         <div class="output">
-            <p>What is the order ammount? $${ammount}</p>
-            <p>What is the state? ${state}</p>
+
        
     
         </div>
@@ -35,23 +34,22 @@
             state = state.toUpperCase();
             let tax = parseFloat(ammount*.055);
             let output = document.getElementsByClassName("output");
-            output[0].innerHTML =`<p>What is the order ammount? $${ammount}</p>
+
+            let html = `<p>What is the order ammount? $${ammount}</p>
             <p>What is the state? ${state}</p>
             <p>The total is $${ammount}</p>`
 
 
             if(state == "WI"){
-                output[0].innerHTML =`<p>What is the order ammount? $${ammount}</p>
+                html =`<p>What is the order ammount? $${ammount}</p>
             <p>What is the state? ${state}</p>
             <p>The subtotal is $${ammount}</p>
             <p>The tax is $${tax}</p>
             <p>The total is $${parseFloat(ammount+tax)}</p>
-            
             `
             
-
-            
             }
+            output[0].innerHTML = html;
 
         
         }
