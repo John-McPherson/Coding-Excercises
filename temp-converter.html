@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <nav>
         <a href="./index.html">Return Home</a>
@@ -13,10 +15,65 @@
     <header>
         <h1>Temperature Converter</h1>
     </header>
+    <div>
+        <p>Press C to convert from Fahrenheit to Celcius</p>
+        <p>Press F to convert from Celcius to Fahrenheit</p>
+    </div>
+    <div class="empty">
+       
+
+    </div>
+
+    <div class="output">
+       
+
+    </div>
 
 
     <script>
+        function genHtml(event) {
+            let div = document.getElementsByClassName('empty');
+            let output = document.getElementsByClassName("output");
+            if (event.key === 'c') {
+                div[0].innerHTML = `<h2>You are converting Fahrenheit to Celcius</h2>
+        <form onsubmit="farCel(event)">
+            <label for="fahrenheit">Please enter the temp in Fahrenheit</label>
+            <input type="number" id="fahrenheit" required>
+            <input type="submit" value="Submit">
+        </form>`;
+        output[0].innerHTML = '';
+            } else if (event.key === 'f') {
+                div[0].innerHTML = `<h2>You are converting Celcius to Fahrenheit</h2>
+        <form onsubmit="celFar(event)">
+            <label for="celcius">Please enter the temp in Celcius?</label>
+            <input type="number" id="celcius" required>
+            <input type="submit" value="Submit">
+        </form>`;
+        output[0].innerHTML = '';
+            }
+        }
+        function celFar(event){
+            event.preventDefault();
+            let cel = document.getElementById('celcius').value;
+            let far = (cel *9/5)+32;
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `<p>The temp in Fahrenheit is ${far}</p>
+            `;
+        }
+        function farCel(event){
+            event.preventDefault();
+            let far = document.getElementById('fahrenheit').value;
+            let cel = (far-32)*5/9;
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = `<p>The temp in Celcius is ${cel}</p>
+            `;
+        }
 
+
+
+
+        window.addEventListener('keydown', genHtml);
     </script>
 </body>
+
 </html>
