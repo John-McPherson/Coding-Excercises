@@ -17,22 +17,42 @@
         <label for="ammount">What is the order ammount?</label>
         <input type="number" id="ammount" required value="10">
         <label for="state">What is the state?</label>
-        <select name="state" id="state">
-            <option value="wisconsin" required>Wisconsin</option>
-            <option value="illinois">Illinois</option>
-        </select>
+       <input type="radio" name="county" id="wisconsin" value="wisconsin" onchange="county(event)">
+       <label for="wisconsin">Wisconsin</label>
+       <input type="radio" name="county" id="illinois" value="illinois" onchange="county(event)">
+       <label for="illinois">Illinois</label>
+        <span class="option">
+            <!-- <label for="county">What is the county?</label>
+            <select name="county" id="county">
+                <option value="eau-claire-county" required>Eau Claire County</option>
+                <option value="dunn-county">Dunn County</option>
+            </select> -->
+        </span>
         <input type="submit" value="Submit">
     </form>
     <div class="output">
-
-   
+       
 
     </div>
 
     <script>
-
-
-
+        function county(event){
+            let state = this.value;
+            let option = document.getElementsByTagName('span');
+            let html = ``;
+            console.log(state);
+            if (state ==="wisconsin"){
+                html =`<label for="county">What is the county?</label>
+        <select name="county" id="county">
+            <option value="eau-claire-county" required>Eau Claire County</option>
+            <option value="dunn-county">Dunn County</option>
+        </select>`
+            }else if(state === 'illinois'){
+                html =``;
+            }
+            option[0].innerHTML = html;
+        }
+        document.getElementById('state').addEventListener("onchange",county)
     </script>
 </body>
 </html>
