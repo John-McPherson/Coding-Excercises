@@ -16,17 +16,45 @@
             <label for="ammount">What is the order ammount?</label>
             <input type="number" id="ammount" required value="10">
             <label for="state">What is the state?</label>
-            <input type="text" id="state" value = "WI" required>
+            <input type="text" id="state" value = "wi" required>
             <input type="submit" value="Submit">
         </form>
         <div class="output">
+            <p>What is the order ammount? $${ammount}</p>
+            <p>What is the state? ${state}</p>
        
     
         </div>
     </header>
     
     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let ammount = parseInt(document.getElementById('ammount').value);
+            let state = document.getElementById('state').value;
+            state = state.toUpperCase();
+            let tax = parseFloat(ammount*.055);
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML =`<p>What is the order ammount? $${ammount}</p>
+            <p>What is the state? ${state}</p>
+            <p>The total is $${ammount}</p>`
 
+
+            if(state == "WI"){
+                output[0].innerHTML =`<p>What is the order ammount? $${ammount}</p>
+            <p>What is the state? ${state}</p>
+            <p>The subtotal is $${ammount}</p>
+            <p>The tax is $${tax}</p>
+            <p>The total is $${parseFloat(ammount+tax)}</p>
+            
+            `
+            
+
+            
+            }
+
+        
+        }
     </script>
 </body>
 </html>
