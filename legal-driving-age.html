@@ -16,7 +16,7 @@
 
   <form onsubmit="handleSubmit(event)">
     <label for="age">Please enter your age:</label>
-    <input type="text" id="username" required>
+    <input type="text" id="age" required>
     <input type="submit" value="Submit">
 </form>
 <div class="output">
@@ -25,6 +25,17 @@
 </div>
 
     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let age = parseInt(document.getElementById('age').value);
+            let html = ``
+            age >= 16 ? html = `<p>You are ${age}, you are old enough to drive.</p>` : html = `<p>You are ${age}, you are not old enough to drive.</p>`
+            let output = document.getElementsByClassName("output");
+            output[0].innerHTML = html;
+
+            
+
+        }
 
     </script>
 </body>
