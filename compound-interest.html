@@ -14,6 +14,7 @@
         <h1>Computing Compound Interest</h1>
     </header>
     <form onsubmit="handleSubmit(event)">
+        <h2>Calculating Savings</h2>
         <label for="principal">Enter the principal: </label>
         <input type="number" id="principal" required value="1500">
         <label for="rate">Enter the rate of interest: </label>
@@ -26,8 +27,23 @@
     </form>
     <div class="output">
         
-        
+    </div>
+    <form onsubmit="howLong(event)">
+        <h2>Calculating How Long until savings Reach Target</h2>
+        <label for="principal-two">Enter the principal: </label>
+        <input type="number" id="principal-two" required value="1500">
+        <label for="savings">Enter the your desired savings: </label>
+        <input type="number" id="savings" required value="2000">
+        <label for="rate-two">Enter the rate of interest: </label>
+        <input type="number" step=".01" min="0" max="100" id="rate-two" value="4.3" required>
+        <label for="compound-two">Enter the number times the interest is compounded per year: </label>
+        <input type="number" id="compound-two" required value="4">
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
 
+       
+        
     </div>
 
 
@@ -47,6 +63,30 @@
             <p>$${principal} invested at  ${document.getElementById("rate").value}% for ${years} years compounded ${compound} times a year is $${interest}</p>
 
             `
+        }
+        function howLong(event){
+            event.preventDefault();
+            let principal = parseInt(document.getElementById("principal-two").value);
+            let target = parseInt(document.getElementById("savings").value);
+            let rate = parseFloat(document.getElementById("rate-two").value);
+            let compound = parseInt(document.getElementById("compound-two").value);
+            let total = principal;
+            let years = 0; 
+            let interest = principal*(1+((rate/100))/compound)**(compound*1);
+            if (target <= total){
+                years = 1;
+            }else {
+                for (years; target > total; years++){
+                total =  principal*(1+((rate/100))/compound)**(compound*years)
+                console.log("test")
+            }
+        } years = years-1;
+
+            let output = document.getElementsByClassName("output");
+            output[1].innerHTML = ` <p>If $${principal} is invested at an interest rate of ${rate}% compounded ${compound} every year, it will take ${years} years to reach $${target}.</p>
+            `
+
+
         }
 
     </script>
