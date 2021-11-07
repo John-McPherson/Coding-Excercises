@@ -13,9 +13,25 @@
     <header>
         <h1>Multistate Sales Tax Calculator</h1>
     </header>
+    <form onsubmit="handleSubmit(event)">
+        <label for="ammount">What is the order ammount?</label>
+        <input type="number" id="ammount" required value="10">
+        <label for="state">What is the state?</label>
+        <select name="state" id="state">
+            <option value="wisconsin" required>Wisconsin</option>
+            <option value="illinois">Illinois</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="output">
 
+   
+
+    </div>
 
     <script>
+
+
 
     </script>
 </body>
