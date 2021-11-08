@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <nav>
         <a href="./index.html">Return Home</a>
@@ -17,16 +19,16 @@
         <label for="ammount">What is the order ammount?</label>
         <input type="number" id="ammount" required value="10">
         <label for="state">What is the state?</label>
-       <input type="radio" name="county" id="wisconsin" value="wisconsin" onchange="county(event)">
-       <label for="wisconsin">Wisconsin</label>
-       <input type="radio" name="county" id="illinois" value="illinois" onchange="county(event)">
-       <label for="illinois">Illinois</label>
+        <input type="radio" name="state" id="wisconsin" value="wisconsin" onchange="change(event)" checked>
+        <label for="wisconsin">Wisconsin</label>
+        <input type="radio" name="state" id="illinois" value="illinois" onchange="change(event)">
+        <label for="illinois">Illinois</label>
         <span class="option">
-            <!-- <label for="county">What is the county?</label>
+            <label for="county">What is the county?</label>
             <select name="county" id="county">
                 <option value="eau-claire-county" required>Eau Claire County</option>
                 <option value="dunn-county">Dunn County</option>
-            </select> -->
+            </select>
         </span>
         <input type="submit" value="Submit">
     </form>
@@ -36,23 +38,46 @@
     </div>
 
     <script>
-        function county(event){
-            let state = this.value;
+        function change(event) {
+            let state = document.querySelector('input[name="state"]:checked').value;
             let option = document.getElementsByTagName('span');
             let html = ``;
             console.log(state);
-            if (state ==="wisconsin"){
-                html =`<label for="county">What is the county?</label>
+            if (state === "wisconsin") {
+                html = `<label for="county">What is the county?</label>
         <select name="county" id="county">
             <option value="eau-claire-county" required>Eau Claire County</option>
             <option value="dunn-county">Dunn County</option>
         </select>`
-            }else if(state === 'illinois'){
-                html =``;
+            } else if (state === 'illinois') {
+                html = ``;
             }
             option[0].innerHTML = html;
         }
-        document.getElementById('state').addEventListener("onchange",county)
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            let state = document.querySelector('input[name="state"]:checked').value;
+            let outputContainer = document.getElementsByClassName("output");
+            let output = "";
+            let tax = .08;
+            let ammount = parseFloat(document.getElementById('ammount').value);
+            if (state ==="wisconsin"){
+                let county = document.getElementById('county').value;
+                console.log(county);
+                county === 'eau-claire-county' ? tax = tax + .005 : tax = tax + .004;
+                output = `${tax}
+            `
+            }
+            tax = tax*ammount;
+            let total = tax + ammount;
+            taxTotal = tax.toFixed(2);
+            outputContainer[0].innerHTML = ` <p>The tax is $${taxTotal}</p>
+        <p>The total is $${ammount+tax}</p>`
+
+
+        }
     </script>
 </body>
+
 </html>
